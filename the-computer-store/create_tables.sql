@@ -10,5 +10,5 @@ CREATE TABLE Products (
     Price DECIMAL NOT NULL,
     Manufacturer INTEGER NOT NULL,
     PRIMARY KEY (Code),
-    FOREIGN KEY (Manufacturer) REFERENCES Manufactures(Code)
+    FOREIGN KEY (Manufacturer) REFERENCES Manufacturers(Code)
 ) ENGINE = INNODB;
