@@ -82,23 +82,20 @@ GROUP BY Manufacturer;
 
 --15. Select the name and price of the cheapest product.
 
-SELECT name,price
-  FROM Products
-  ORDER BY price ASC
-  LIMIT 1
+SELECT name,price FROM Products ORDER BY price ASC LIMIT 1;
 
 /* With a nested SELECT */
  SELECT Name, Price
-   FROM Products
-   WHERE Price = (SELECT MIN(Price) FROM Products);
+ FROM Products
+ WHERE Price = (SELECT MIN(Price) FROM Products);
 
 
 --16. Select the name of each manufacturer along with the name and price of its most expensive product.
 
 SELECT Products.Name, MAX(Price), Manufacturers.Name
- FROM Products, Manufacturers
- WHERE Manufacturer = Manufacturers.Code
- GROUP BY Manufacturers.Name;
+FROM Products, Manufacturers
+WHERE Manufacturer = Manufacturers.Code
+GROUP BY Manufacturers.Name;
 
  /* With a nested SELECT and without INNER JOIN */
    SELECT A.Name, A.Price, F.Name
@@ -107,8 +104,8 @@ SELECT Products.Name, MAX(Price), Manufacturers.Name
      AND A.Price =
      (
        SELECT MAX(A.Price)
-         FROM Products A
-         WHERE A.Manufacturer = F.Code
+       FROM Products A
+       WHERE A.Manufacturer = F.Code
      );
  
  /* With a nested SELECT and an INNER JOIN */
@@ -118,24 +115,20 @@ SELECT Products.Name, MAX(Price), Manufacturers.Name
      AND A.Price =
      (
        SELECT MAX(A.Price)
-         FROM Products A
-         WHERE A.Manufacturer = F.Code
+       FROM Products A
+       WHERE A.Manufacturer = F.Code
      );
 
 --17. Add a new product: Loudspeakers, $70, manufacturer 2.
 
-INSERT INTO Products( Name , Price , Manufacturer)
-  VALUES ( 'Loudspeakers' , 70 , 2 );
+INSERT INTO Products( Name , Price , Manufacturer) VALUES ( 'Loudspeakers' , 70 , 2 );
 
 
 --18. Update the name of product 8 to "Laser Printer".
 
-UPDATE Products
-   SET Name = 'Laser Printer'
-   WHERE Code = 8;
+UPDATE Products SET Name = 'Laser Printer' WHERE Code = 8;
 
 
 --19. Apply a 10% discount to all products.
 
-UPDATE Products
-   SET Price = Price * 0.9;
+UPDATE Products SET Price = Price * 0.9;
